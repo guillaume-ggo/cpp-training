@@ -45,6 +45,14 @@ bool operator>(Duree const& a, Duree const& b)
 {
   return !(a==b && a<b);
 }
+bool operator<=(Duree const& a, Duree const& b)
+{
+  return a<b || a==b;
+}
+bool operator>=(Duree const& a, Duree const& b)
+{
+  return a>b || a==b;
+}
 ostream &operator<<(ostream &flux, Duree const& duree)
 {
   duree.afficher(flux);
