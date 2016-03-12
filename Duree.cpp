@@ -29,6 +29,16 @@ bool Duree::estPlusPetitQue(Duree const& b) const
   else
     return false;
 }
+void Duree::operator+=(const Duree &a)
+{
+  m_secondes+=a.m_secondes;
+  m_minutes+=m_secondes/60;
+  m_secondes%=60;
+  m_minutes+=a.m_minutes;
+  m_heures+=m_minutes/60;
+  m_minutes%=60;
+  m_heures+=a.m_heures;
+}
 bool operator==(Duree const& a, Duree const& b)
 {
   return a.estEgal(b);
