@@ -45,7 +45,7 @@ bool operator==(Duree const& a, Duree const& b)
 }
 bool operator!=(Duree const& a, Duree const& b)
 {
-    return !(a==b);
+  return !(a==b);
 }
 bool operator<(Duree const& a, Duree const& b)
 {
@@ -72,6 +72,13 @@ void Duree::afficher(ostream &flux) const
 {
   flux << m_heures << "h" << m_minutes << "m" << m_secondes << "s";
 }
+Duree operator+(Duree const& a, Duree const& b)
+{
+  Duree copie(a);
+  copie+=b;
+  return copie;
+}
+
 int main()
 {
   Duree d1(0, 28, 10), d2(0, 28, 10), d3(0, 120, 184);
@@ -85,5 +92,7 @@ int main()
     cout << "d1<d3" << endl;
   if (d3 > d2)
     cout << "d3=" << d3 << ">" << "d2=" << d2 << endl;
+  Duree d4(1, 32, 50);
+  cout << "d1+d4=" << (d1+d4) << endl;
   return 0;
 }
