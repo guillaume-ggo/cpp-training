@@ -9,6 +9,7 @@ class Duree
   bool estPlusPetitQue(Duree const& b) const;
   void afficher(std::ostream &flux) const;
   void operator+=(const Duree &a);
+  void operator-=(const Duree &a);
   private:
   int m_heures;
   int m_minutes;

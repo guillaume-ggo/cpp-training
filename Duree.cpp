@@ -39,6 +39,26 @@ void Duree::operator+=(const Duree &a)
   m_minutes%=60;
   m_heures+=a.m_heures;
 }
+void Duree::operator-=(const Duree &a)
+{
+  m_secondes-=a.m_secondes;
+  if(m_secondes<0)
+  {
+    m_secondes+=60;
+    m_minutes--;
+  }
+  m_minutes-=m_secondes/60;
+  m_secondes%=60;
+  m_minutes-=a.m_minutes;
+  if(m_minutes<0)
+  {
+    m_minutes+=60;
+    m_heures--;
+  }
+  m_heures-=m_minutes/60;
+  m_minutes%=60;
+  m_heures-=a.m_heures;
+}
 bool operator==(Duree const& a, Duree const& b)
 {
   return a.estEgal(b);
@@ -78,6 +98,12 @@ Duree operator+(Duree const& a, Duree const& b)
   copie+=b;
   return copie;
 }
+Duree operator-(Duree const& a, Duree const& b)
+{
+  Duree copie(a);
+  copie-=b;
+  return copie;
+}
 
 int main()
 {
@@ -92,7 +118,9 @@ int main()
     cout << "d1<d3" << endl;
   if (d3 > d2)
     cout << "d3=" << d3 << ">" << "d2=" << d2 << endl;
-  Duree d4(1, 32, 50);
+  Duree d4(4, 32, 50);
   cout << "d1+d4=" << (d1+d4) << endl;
+  Duree d5(3, 33, 51);
+  cout << "d4-d5=" << (d4-d5) << endl;
   return 0;
 }
